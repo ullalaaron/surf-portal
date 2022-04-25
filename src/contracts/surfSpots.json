@@ -1,0 +1,175 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "surfer",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "spotName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "spotDescription",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "spotImageUrl",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct SharedStructs.SurfSpot",
+        "name": "_surfSpot",
+        "type": "tuple"
+      }
+    ],
+    "name": "SurfSpotSubmitted",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "getAllSurfSpots",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "surfer",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "spotName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "spotDescription",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "spotImageUrl",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct SharedStructs.SurfSpot[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_index",
+        "type": "uint256"
+      }
+    ],
+    "name": "getSurfSpot",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "surfer",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "spotName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "spotDescription",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "spotImageUrl",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct SharedStructs.SurfSpot",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getSurfSpotsCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_spotName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_spotDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_spotImageUrl",
+        "type": "string"
+      }
+    ],
+    "name": "submitSurfSpot",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
