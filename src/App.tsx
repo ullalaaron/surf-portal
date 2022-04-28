@@ -22,7 +22,6 @@ import {
   setNotification,
 } from "./slices/Notification.slice";
 import { Notification } from "./components/Notification";
-import { allowedNodeEnvironmentFlags } from "process";
 
 enum MenuItemAction {
   ConnectWallet = 1,
@@ -48,6 +47,8 @@ function App() {
   const isLoading = useSelector(getLoadingSelector);
   const notification = useSelector(getNotificationSelector);
 
+  dispatch(setNotification("Smart contract: " + contractAddress));
+
   const handlMenuAction = (item?: MyMenuItem) => {
     if (item?.id) {
       switch (item.id) {
@@ -72,6 +73,7 @@ function App() {
 
       if (!ethereum) {
         console.log("Make sure you have metamask!");
+        dispatch(setNotification("Make sure you have metamask!"));
       } else {
         console.log("We have the ethereum object", ethereum);
       }
@@ -108,6 +110,7 @@ function App() {
       handleEthAccount(accounts[0]);
     } catch (err) {
       console.log("Error:", err);
+      dispatch(setNotification("Error connecting wallet: " + err));
     }
   };
 
