@@ -47,8 +47,6 @@ function App() {
   const isLoading = useSelector(getLoadingSelector);
   const notification = useSelector(getNotificationSelector);
 
-  dispatch(setNotification("Smart contract: " + contractAddress));
-
   const handlMenuAction = (item?: MyMenuItem) => {
     if (item?.id) {
       switch (item.id) {
@@ -68,6 +66,7 @@ function App() {
   };
 
   const checkIfWalletIsConnected = async () => {
+    dispatch(setNotification("Smart contract: " + contractAddress));
     try {
       const { ethereum } = window;
 
