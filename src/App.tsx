@@ -22,6 +22,7 @@ import {
   setNotification,
 } from "./slices/Notification.slice";
 import { Notification } from "./components/Notification";
+import { allowedNodeEnvironmentFlags } from "process";
 
 enum MenuItemAction {
   ConnectWallet = 1,
@@ -40,7 +41,7 @@ function App() {
   const [openModal, setOpenModal] = useState(false);
   const [currentAccount, setCurrentAccount] = useState("");
   const [menuActions, setMenuActions] = useState<MyMenuItem[]>([]);
-  const contractAddress = "0xe65a80965C242f67EB994e7756365c3B60aE5c68";
+  const contractAddress = "0x4Dc6d170A057568dc2178e1b45431Fa199fEFf9A";
   const contractAbi = abi;
   const dispatch = useAppDispatch();
 
@@ -131,6 +132,9 @@ function App() {
           signer
         );
         const surfSpots = await surfSpotsContract.getAllSurfSpots();
+        surfSpotsContract.on("SurfSpotSubmitted", (event: any) => {
+          console.log("SurfSpotSubmitted", event);
+        });
         const mappedSurdSpots: SurfSpotDto[] = surfSpots.map((item: any) => ({
           name: item.spotName,
           description: item.spotDescription,
@@ -139,12 +143,14 @@ function App() {
         }));
         dispatch(setAllSurfSpots(mappedSurdSpots));
       }
-    } catch (error) {
-      console.error(error);
+    } catch (e: any) {
+      dispatch(setNotification(`Error occured: ${e?.message || e}`));
+      console.error(e);
     }
   };
 
   async function submitSurfSpot(item: SurfSpotDto) {
+    setOpenModal(false);
     try {
       const { ethereum } = window;
 
@@ -180,6 +186,7 @@ function App() {
       count = await portalContract.getSurfSpotsCount();
       dispatch(setNotification(`There are now ${count} spots 🎉`));
     } catch (e: any) {
+      dispatch(setNotification(`Error occured: ${e?.message || e}`));
       dispatch(setLoading(false));
       dispatch(setNotification(e?.message.toString() || e?.toString()));
       console.error(e);
